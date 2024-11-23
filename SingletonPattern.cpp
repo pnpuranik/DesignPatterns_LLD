@@ -10,6 +10,7 @@ Singleton(std::string& name_) : name(name_)
 {
     
 }
+// Note : this mutex object has to be "static" as well
 static std::mutex mt;
 
 static Singleton* pInstance;
