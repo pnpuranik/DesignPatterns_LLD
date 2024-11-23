@@ -5,6 +5,7 @@
 class Singleton
 {
 private:
+// Prevent any other ways of creation
 Singleton(const Singleton &);
 Singleton& operator=(const Singleton &);
 Singleton(std::string& name_) : name(name_)
