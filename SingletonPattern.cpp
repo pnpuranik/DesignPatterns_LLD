@@ -1,4 +1,3 @@
-// Online C++ compiler to run C++ program online
 #include <iostream>
 #include <mutex>
 #include <thread>
@@ -6,6 +5,8 @@
 class Singleton
 {
 private:
+Singleton(const Singleton &);
+Singleton& operator=(const Singleton &);
 Singleton(std::string& name_) : name(name_)
 {
     
@@ -19,12 +20,17 @@ public:
 std::string name;
 static Singleton* GetInstance(std::string name_)
 {
-    std::lock_guard<std::mutex> lock(mt);
-    if(!pInstance)
+    // Double check lock, locks are expensive, this is the way to avoid locks 
+    // for the calls after creation.
+    if (!pInstance) 
     {
-        pInstance = new Singleton(name_);
-    }
+        std::lock_guard<std::mutex> lock(mt);
+        if(!pInstance)
+        {
+            pInstance = new Singleton(name_);
+        }
     return pInstance;
+    }
 }
 
 };
@@ -50,6 +56,7 @@ void threadT2()
 // To initialize them
 //1. Use scope operator
 //2. do not use static specifier during initialization 
+
 Singleton* Singleton::pInstance = nullptr;
 std::mutex Singleton::mt;
 int main() {
