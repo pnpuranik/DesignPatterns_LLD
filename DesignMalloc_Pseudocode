@@ -1,3 +1,4 @@
+// void *head // global pointer to be used to keep track of the allocations
 void *malloc(size_t sz)
 {
 
