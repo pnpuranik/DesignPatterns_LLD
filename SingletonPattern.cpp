@@ -62,7 +62,7 @@ Singleton* Singleton::pInstance = nullptr;
 std::mutex Singleton::mt;
 int main() {
     // Write C++ code here
-    std::cout << "Try programiz.pro\n";
+    std::cout << "Forking two threads..\n";
     std::thread t1(threadT1);
     std::thread t2(threadT2);
 
