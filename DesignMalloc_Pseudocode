@@ -1,0 +1,25 @@
+void *malloc(size_t sz)
+{
+
+	//align size with 4
+	// if head exists, that indicates that there are previously allocated chunks of memory
+	// that can be scanned through, if suitable block found assign and split the exitsting block
+ 	// else reserve a chunk of memory of appropriate size from the OS
+	// if not reserve a chunk of memory of appropriate size from the OS
+}
+
+// How to store the information of these chunks, which DS to use?
+// insertion and deletion should take o(1)
+// random insertion and deletion is feasible.
+
+
+// what information to store 
+struct MemChunkInfo
+{
+	bool isFree;
+  size_t sz; // only the size allocated for the data storage has to be stored in this variable.
+  MemChunkInfo *next;
+  MemChunkInfo *prev;
+  void *ptr;
+  char data;
+}
